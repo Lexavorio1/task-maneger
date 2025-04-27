@@ -6,10 +6,7 @@ export const connect = (mapStateToProps, mapDispatchToProps) => {
     return (props) => {
       const [state, setState] = useState(store.getState())
       
-       return <Component {...props} {...stateProps} {...dispatchProps} />
-    }
-  }
-} useEffect(() => {
+      useEffect(() => {
         const unsubscribe = store.subscribe(() => {
           setState(store.getState())
         })
@@ -19,4 +16,7 @@ export const connect = (mapStateToProps, mapDispatchToProps) => {
       const stateProps = mapStateToProps ? mapStateToProps(state) : {}
       const dispatchProps = mapDispatchToProps ? mapDispatchToProps(store.dispatch) : {}
       
-    
+      return <Component {...props} {...stateProps} {...dispatchProps} />
+    }
+  }
+}
